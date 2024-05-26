@@ -1,0 +1,50 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create the dataset
+data = {
+    'Item ID': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Item Name': ['Apple', 'Banana', 'Orange', 'Broccoli', 'Carrot', 'Spinach', 'Chicken Breast', 'Ground Beef', 'Salmon Fillet', 'Shrimp'],
+    'Quantity': [50, 100, 75, 30, 60, 20, 40, 25, 15, 35],
+    'Price': [0.50, 0.30, 0.60, 1.20, 0.80, 1.00, 5.00, 4.50, 8.00, 7.00],
+    'Category': ['Fruits', 'Fruits', 'Fruits', 'Vegetables', 'Vegetables', 'Vegetables', 'Meat', 'Meat', 'Seafood', 'Seafood']
+}
+
+df = pd.DataFrame(data)
+
+# Summary statistics
+print(df.describe())
+
+# Bar chart of quantities
+plt.figure(figsize=(10, 6))
+plt.bar(df['Item Name'], df['Quantity'], color='skyblue')
+plt.xlabel('Item Name')
+plt.ylabel('Quantity')
+plt.title('Quantities of Items in Inventory')
+plt.xticks(rotation=45)
+plt.show()
+
+# Pie chart of categories
+plt.figure(figsize=(8, 8))
+df['Category'].value_counts().plot.pie(autopct='%1.1f%%')
+plt.title('Item Distribution by Category')
+plt.ylabel('')
+plt.show()
+
+# Histogram of prices
+plt.figure(figsize=(10, 6))
+plt.hist(df['Price'], bins=10, color='lightgreen', edgecolor='black')
+plt.xlabel('Price ($)')
+plt.ylabel('Number of Items')
+plt.title('Distribution of Item Prices')
+plt.show()
+
+# Box plot of prices by category
+plt.figure(figsize=(10, 6))
+df.boxplot(column='Price', by='Category', grid=False)
+plt.xlabel('Category')
+plt.ylabel('Price ($)')
+plt.title('Box Plot of Prices by Category')
+plt.suptitle('')
+plt.show()
+
