@@ -1,0 +1,20 @@
+import pandas as pd
+from tabulate import tabulate
+
+# Create the dataset
+data = {
+    'Item ID': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Item Name': ['Apple', 'Banana', 'Orange', 'Broccoli', 'Carrot', 'Spinach', 'Chicken Breast', 'Ground Beef', 'Salmon Fillet', 'Shrimp'],
+    'Quantity': [50, 100, 75, 30, 60, 20, 40, 25, 15, 35],
+    'Price': [0.50, 0.30, 0.60, 1.20, 0.80, 1.00, 5.00, 4.50, 8.00, 7.00],
+    'Category': ['Fruits', 'Fruits', 'Fruits', 'Vegetables', 'Vegetables', 'Vegetables', 'Meat', 'Meat', 'Seafood', 'Seafood']
+}
+
+# Convert to DataFrame
+df = pd.DataFrame(data)
+
+# Add Serial Number column
+df.insert(0, 'Serial No', range(1, len(df) + 1))
+
+# Center align the data using tabulate
+print(tabulate(df, headers='keys', tablefmt='grid', showindex=False, stralign='center', numalign='center'))
